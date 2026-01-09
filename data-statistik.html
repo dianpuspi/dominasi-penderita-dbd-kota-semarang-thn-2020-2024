@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>SIG - DBD Kota Semarang</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Rubik:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* ===== RESPONSIVE STYLES ===== */
+        
+        /* Navbar responsive */
+        .navbar-brand h1 {
+            font-size: 1.5rem;
+        }
+
+        /* Table Styles */
+        .custom-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+            font-size: 15px;
+        }
+
+        .custom-table thead {
+            background-color: #02245B;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .custom-table th, .custom-table td {
+            padding: 12px 14px;
+            text-align: center;
+        }
+
+        .custom-table tbody tr:nth-child(even) {
+            background-color: #F5F5F5;
+        }
+
+        .custom-table tbody tr:hover {
+            background-color: #FF5E14;
+            color: white;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .custom-table tfoot {
+            background-color: #5F656F;
+            color: white;
+            font-weight: 700;
+        }
+
+        /* Table wrapper for horizontal scroll on mobile */
+        .table-responsive-custom {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Stat card hover */
+        .stat-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            border-radius: 16px;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+            cursor: pointer;
+        }
+
+        /* Chart containers - Ukuran lebih kecil */
+        .chart-container-pie {
+            width: 50%;
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .chart-container-bar {
+            width: 85%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Card responsive */
+        .card h4 {
+            font-size: 1.25rem;
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .navbar-brand h1 {
+                font-size: 1rem;
+            }
+
+            .navbar-brand {
+                padding-left: 1rem !important;
+            }
+
+            .navbar {
+                padding-right: 1rem !important;
+            }
+
+            .card h4 {
+                font-size: 1rem;
+            }
+
+            .card {
+                padding: 1rem !important;
+            }
+
+            .container-xxl {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            /* Chart containers pada mobile */
+            .chart-container-pie {
+                width: 80%;
+                max-width: 280px;
+            }
+
+            .chart-container-bar {
+                width: 100%;
+            }
+
+            /* Table font size on mobile */
+            .custom-table {
+                font-size: 12px;
+            }
+
+            .custom-table th, .custom-table td {
+                padding: 8px 6px;
+            }
+
+            /* Stat card responsive */
+            .stat-card {
+                margin-bottom: 0.75rem;
+            }
+
+            .stat-card p {
+                font-size: 11px !important;
+            }
+            
+            .stat-card h5 {
+                font-size: 16px !important;
+            }
+
+            .page-header h1 {
+                font-size: 2rem !important;
+            }
+
+            .breadcrumb {
+                font-size: 0.85rem;
+            }
+
+            .display-6 {
+                font-size: 1.5rem !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .navbar-brand h1 {
+                font-size: 0.85rem;
+            }
+
+            .card h4 {
+                font-size: 0.9rem;
+            }
+
+            .stat-card p {
+                font-size: 10px !important;
+            }
+            
+            .stat-card h5 {
+                font-size: 14px !important;
+            }
+
+            .stat-card {
+                padding: 0.75rem !important;
+            }
+
+            .custom-table {
+                font-size: 10px;
+            }
+
+            .custom-table th, .custom-table td {
+                padding: 6px 4px;
+            }
+
+            .chart-container-pie {
+                width: 90%;
+                max-width: 250px;
+            }
+        }
+
+        /* Improve padding and spacing */
+        .py-4 {
+            padding-top: 1.5rem !important;
+            padding-bottom: 1.5rem !important;
+        }
+
+        @media (min-width: 768px) {
+            .py-4 {
+                padding-top: 2rem !important;
+                padding-bottom: 2rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+    <!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top py-0 pe-5">
+        <a href="index.html" class="navbar-brand ps-5 me-0 d-flex align-items-center">
+    <img src="https://tropipedia.com/wp-content/uploads/2019/10/Lambang_Kota_Semarang-786x1024.png" alt="Logo Kota Semarang" 
+         style="height: 35px; margin-right: 10px;">
+            <h3 class="text-white m-0">SIG DBD Kota Semarang</h3>
+        </a>
+        <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link">Beranda</a>
+                <a href="pemetaan.html" class="nav-item nav-link">Pemetaan</a>
+                <a href="data-statistik.html" class="nav-item nav-link active">Data dan Statistik</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <h1 class="display-3 text-white animated slideInRight">Data dan Statistik</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb animated slideInRight mb-0">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Data dan Statistik (Non Spasial)</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+    <!-- TABEL STATISTIK START -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+                <p class="fw-medium text-uppercase text-primary mb-2">Data Visualisasi</p>
+                <h1 class="display-6 mb-5">Tabel Distribusi Penderita DBD per Kecamatan</h1>
+            </div>
+
+            <div class="table-responsive-custom">
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Kecamatan</th>
+                            <th>Penderita Laki-Laki</th>
+                            <th>Penderita Perempuan</th>
+                            <th>Jumlah Penderita</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr><td>Semarang Tengah</td><td>20</td><td>23</td><td>43</td></tr>
+                        <tr><td>Semarang Utara</td><td>80</td><td>57</td><td>137</td></tr>
+                        <tr><td>Semarang Timur</td><td>48</td><td>28</td><td>76</td></tr>
+                        <tr><td>Gayamsari</td><td>37</td><td>28</td><td>65</td></tr>
+                        <tr><td>Genuk</td><td>85</td><td>57</td><td>142</td></tr>
+                        <tr><td>Pedurungan</td><td>139</td><td>97</td><td>236</td></tr>
+                        <tr><td>Semarang Selatan</td><td>39</td><td>22</td><td>61</td></tr>
+                        <tr><td>Candisari</td><td>65</td><td>38</td><td>103</td></tr>
+                        <tr><td>Gajahmungkur</td><td>26</td><td>27</td><td>53</td></tr>
+                        <tr><td>Tembalang</td><td>206</td><td>129</td><td>335</td></tr>
+                        <tr><td>Banyumanik</td><td>158</td><td>89</td><td>247</td></tr>
+                        <tr><td>Gunungpati</td><td>67</td><td>52</td><td>119</td></tr>
+                        <tr><td>Semarang Barat</td><td>109</td><td>63</td><td>172</td></tr>
+                        <tr><td>Mijen</td><td>92</td><td>58</td><td>150</td></tr>
+                        <tr><td>Ngaliyan</td><td>154</td><td>92</td><td>246</td></tr>
+                        <tr><td>Tugu</td><td>28</td><td>22</td><td>50</td></tr>
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <td>TOTAL</td>
+                            <td>1353</td>
+                            <td>882</td>
+                            <td>2235</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+    </div>
+    <!-- TABEL STATISTIK END -->
+
+    <!-- CARD PIE CHART GENDER START -->
+    <div class="container-xxl py-4">
+        <div class="container">
+
+            <div class="card shadow-lg border-0 rounded-5 p-3 p-md-4">
+
+                <h4 class="mb-3 text-center" style="font-weight:600;">
+                    Perbandingan Penderita DBD Berdasarkan Jenis Kelamin Di Kota Semarang (2020-2024)
+                </h4>
+
+                <!-- PIE CHART - Lebih kecil dan center -->
+                <div class="d-flex justify-content-center my-3">
+                    <div class="chart-container-pie">
+                        <canvas id="chartPieGender"></canvas>
+                    </div>
+                </div>
+
+                <script>
+                    const ctxPie = document.getElementById('chartPieGender');
+
+                    const chartPieGender = new Chart(ctxPie, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Pria', 'Wanita'],
+                            datasets: [{
+                                data: [1353, 882],
+                                backgroundColor: [
+                                    'rgba(54, 162, 235, 0.7)', 
+                                    'rgba(255, 99, 132, 0.7)'
+                                ],
+                                hoverOffset: 10
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: { 
+                                        font: { size: 14 },
+                                        padding: 15
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    // Handle resize
+                    window.addEventListener('resize', function() {
+                        chartPieGender.resize();
+                    });
+                </script>
+
+                <!-- CARD STATISTIK -->
+                <div class="container mt-3 mt-md-4 px-0">
+                    <div class="row g-2 g-md-3 text-center">
+
+                        <div class="col-12 col-md-4">
+                            <div class="card stat-card shadow-sm border-0 py-3" style="background-color: #FF5E14;">
+                                <p class="mb-1" style="font-size: 13px; color:#ffffff;">Yang Mendominasi</p>
+                                <h5 class="fw-bold" style="color:#ffffff; font-size:20px;">Penderita Pria</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                            <div class="card stat-card shadow-sm border-0 py-3" style="background-color: #02245B;">
+                                <p class="mb-1" style="font-size: 13px; color:#ffffff;">Penderita Pria</p>
+                                <h5 class="fw-bold" style="color:#ffffff; font-size:20px;">14 Kecamatan (1.353 orang)</h5>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-4">
+                            <div class="card stat-card shadow-sm border-0 py-3" style="background-color: #5F656F;">
+                                <p class="mb-1" style="font-size: 13px; color:#ffffff;">Penderita Wanita</p>
+                                <h5 class="fw-bold" style="color:#ffffff; font-size:20px;">2 Kecamatan (882 orang)</h5>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- CARD PIE CHART GENDER END -->
+
+    <!-- CARD BAR CHART TOTAL START -->
+    <div class="container-xxl py-4">
+        <div class="container">
+
+            <div class="card shadow-lg border-0 rounded-5 p-3 p-md-4">
+
+                <h4 class="mb-3 text-center" style="font-weight:600;">
+                    Grafik Total Penderita DBD Di Kota Semarang per Kecamatan (2020–2024)
+                </h4>
+
+                <!-- GRAFIK - Lebih kecil -->
+                <div class="d-flex justify-content-center my-3">
+                    <div class="chart-container-bar">
+                        <canvas id="chartTotalKecamatan"></canvas>
+                    </div>
+                </div>
+
+                <script>
+                    const ctxTotalKec = document.getElementById('chartTotalKecamatan');
+
+                    const chartTotalKecamatan = new Chart(ctxTotalKec, {
+                        type: 'bar',
+                        data: {
+                            labels: [
+                                "Semarang Tengah","Semarang Utara","Semarang Timur","Gayamsari",
+                                "Genuk","Pedurungan","Semarang Selatan","Candisari","Gajahmungkur",
+                                "Tembalang","Banyumanik","Gunungpati","Semarang Barat","Mijen",
+                                "Ngaliyan","Tugu"
+                            ],
+                            datasets: [{
+                                label: 'Total Kasus DBD (2020–2024)',
+                                data: [
+                                    43,137,76,65,142,236,61,103,53,
+                                    335,247,119,172,150,246,50
+                                ],
+                                backgroundColor: '#FF5E14'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            plugins: { legend: { display: true }},
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: { display: true, text: 'Jumlah Kasus' }
+                                }
+                            }
+                        }
+                    });
+
+                    // Handle resize
+                    window.addEventListener('resize', function() {
+                        chartTotalKecamatan.resize();
+                    });
+                </script>
+            </div>
+
+        </div>
+    </div>
+    <!-- CARD BAR CHART TOTAL END -->
+
+    <!-- CARD GRAFIK PENDERITA PRIA START -->
+    <div class="container-xxl py-4">
+        <div class="container">
+
+            <div class="card shadow-lg border-0 rounded-5 p-3 p-md-4">
+
+                <h4 class="mb-3 text-center" style="font-weight:600;">
+                    Grafik Penderita DBD Pria Di Kota Semarang per Kecamatan (2020–2024)
+                </h4>
+
+                <!-- GRAFIK PRIA - Lebih kecil -->
+                <div class="d-flex justify-content-center my-3">
+                    <div class="chart-container-bar">
+                        <canvas id="chartPria"></canvas>
+                    </div>
+                </div>
+
+                <script>
+                    const ctxPria = document.getElementById('chartPria');
+
+                    const chartPria = new Chart(ctxPria, {
+                        type: 'bar',
+                        data: {
+                            labels: [
+                                "Semarang Tengah","Semarang Utara","Semarang Timur","Gayamsari",
+                                "Genuk","Pedurungan","Semarang Selatan","Candisari","Gajahmungkur",
+                                "Tembalang","Banyumanik","Gunungpati","Semarang Barat","Mijen",
+                                "Ngaliyan","Tugu"
+                            ],
+                            datasets: [{
+                                label: 'Penderita Pria (2020–2024)',
+                                data: [20,80,48,37,85,139,39,65,26,206,158,67,109,92,154,28],
+                                backgroundColor: 'rgba(54, 162, 235, 0.6)'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            plugins: { legend: { display: true }},
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: { display: true, text: 'Jumlah Kasus' }
+                                }
+                            }
+                        }
+                    });
+
+                    // Handle resize
+                    window.addEventListener('resize', function() {
+                        chartPria.resize();
+                    });
+                </script>
+            </div>
+
+        </div>
+    </div>
+    <!-- CARD GRAFIK PENDERITA PRIA END -->
+
+    <!-- CARD GRAFIK PENDERITA WANITA START -->
+    <div class="container-xxl py-4">
+        <div class="container">
+
+            <div class="card shadow-lg border-0 rounded-5 p-3 p-md-4">
+
+                <h4 class="mb-3 text-center" style="font-weight:600;">
+                    Grafik Penderita DBD Wanita Di Kota Semarang per Kecamatan (2020–2024)
+                </h4>
+
+                <!-- GRAFIK WANITA - Lebih kecil -->
+                <div class="d-flex justify-content-center my-3">
+                    <div class="chart-container-bar">
+                        <canvas id="chartWanita"></canvas>
+                    </div>
+                </div>
+
+                <script>
+                    const ctxWanita = document.getElementById('chartWanita');
+
+                    const chartWanita = new Chart(ctxWanita, {
+                        type: 'bar',
+                        data: {
+                            labels: [
+                                "Semarang Tengah","Semarang Utara","Semarang Timur","Gayamsari",
+                                "Genuk","Pedurungan","Semarang Selatan","Candisari","Gajahmungkur",
+                                "Tembalang","Banyumanik","Gunungpati","Semarang Barat","Mijen",
+                                "Ngaliyan","Tugu"
+                            ],
+                            datasets: [{
+                                label: 'Penderita Wanita (2020–2024)',
+                                data: [23,57,28,28,57,97,22,38,27,129,89,52,63,58,92,22],
+                                backgroundColor: 'rgba(255, 99, 132, 0.6)'
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: true,
+                            plugins: { legend: { display: true }},
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: { display: true, text: 'Jumlah Kasus' }
+                                }
+                            }
+                        }
+                    });
+
+                    // Handle resize
+                    window.addEventListener('resize', function() {
+                        chartWanita.resize();
+                    });
+                </script>
+            </div>
+
+        </div>
+    </div>
+    <!-- CARD GRAFIK PENDERITA WANITA END -->
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container text-center">
+            <p class="mb-2">Copyright &copy; <a class="fw-semi-bold" href="#">Dian Puspitasari - 23670171 - Universitas PGRI Semarang</a>, All Right Reserved.</p>
+            <p class="mb-0">Designed By <a class="fw-semi-bold" href="https://htmlcodex.com">HTML Codex</a></p>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
